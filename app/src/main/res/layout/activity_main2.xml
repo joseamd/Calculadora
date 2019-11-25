@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/btAnterior"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Main2Activity">
+
+    <TextView
+        android:id="@+id/visorResultado"
+        android:layout_width="336dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="116dp"
+        android:background="#e6e6e6"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="266dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="20dp"
+        android:onClick="Regresar"
+        android:text="@string/anterior"
+        android:textAlignment="center"
+        android:textSize="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/visorEstudiante"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/visorEstudiante"
+        app:layout_constraintTop_toBottomOf="@+id/visorEstudiante" />
+
+    <TextView
+        android:id="@+id/visorEstudiante"
+        android:layout_width="266dp"
+        android:layout_height="92dp"
+        android:layout_marginTop="108dp"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/visorResultado"
+        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintStart_toStartOf="@+id/visorResultado"
+        app:layout_constraintTop_toBottomOf="@+id/visorResultado" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

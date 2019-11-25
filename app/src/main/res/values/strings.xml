@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Calculadora</string>
+    <string name="boton1">1</string>
+    <string name="boton2">2</string>
+    <string name="boton3">3</string>
+    <string name="boton4">4</string>
+    <string name="boton5">5</string>
+    <string name="boton6">6</string>
+    <string name="boton7">7</string>
+    <string name="boton8">8</string>
+    <string name="boton9">9</string>
+    <string name="boton0">0</string>
+    <string name="punto">.</string>
+    <string name="suma">+</string>
+    <string name="resta">-</string>
+    <string name="multiplicacion">X</string>
+    <string name="division">/</string>
+    <string name="igual">=</string>
+    <string name="borrarUltimo">DEL</string>
+    <string name="borrar">AC</string>
+    <string name="exp">X^</string>
+    <string name="raiz">√</string>
+    <string name="memoria">M1</string>
+    <string name="siguiente">V</string>
+    <string name="anterior">Λ</string>
+
+
+</resources>
