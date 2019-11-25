@@ -224,7 +224,7 @@ public class MainActivity extends AppCompatActivity  {
 
 
 
-    /*Elimina ceros que puede dar el double a partir de la coma
+    /*Elimina ceros que puede dar el double a partir de la coma */
 
     public void deleteCeros() {
         for(int i = stringResult.length()-1 ; i > stringResult.indexOf(".") ; i--){
@@ -238,7 +238,7 @@ public class MainActivity extends AppCompatActivity  {
                 stringResult.substring(stringResult.length()-1, stringResult.length()).equals(".")){
             stringResult = stringResult.replace(".", "");
         }
-    }*/
+    }
 
 
     //Intent para enviar el dato a la otra actividad
