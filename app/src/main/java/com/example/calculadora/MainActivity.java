@@ -8,28 +8,19 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 public class MainActivity extends AppCompatActivity  {
     //Declaración de Variables
 
     public Operacion operacion;
     public double operan1, operan2, total, memory;
     public int tipOperation;
-    public String stringResult = "0";
+    public String stringMensaje = "", stringDecimal="";
     public EditText visor;
     public TextView visorResultado;
 
-    @Override
-    //Metodo que almacena el dato cuando se reinicia la actividad
-    protected void onSaveInstanceState(Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        if(savedInstanceState != null ) {
-            operan1 = savedInstanceState.getDouble("", operan1);
-            total = savedInstanceState.getDouble("", total);
-            visor.setText("" + operan1);
-            visorResultado.setText(""+ total);
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +30,20 @@ public class MainActivity extends AppCompatActivity  {
         visor = findViewById(R.id.visor);
         visorResultado = findViewById(R.id.visorResultado);
         operacion = new Operacion(); //creamos un objeto operacion
+
+        //Al girar pantalla permanece la info en el operan1
+        if(savedInstanceState != null ) {
+            operan1 = savedInstanceState.getDouble("", operan1);
+            visor.setText("" + operan1);
+        }
+    }
+
+    @Override
+    //Metodo que almacena el dato cuando se reinicia la actividad
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putDouble("operan1", operan1);
+        outState.putDouble("total", memory);
     }
 
     /*Creación de metodos de los botones*/
@@ -153,7 +158,8 @@ public class MainActivity extends AppCompatActivity  {
 
     public void raiz (View v){
         if(visor.getText().toString().isEmpty()){
-            stringResult = "Syntax ERROR";
+            stringMensaje = "Syntax ERROR";
+            visorResultado.setText(stringMensaje);
         }else {
             try {
                 String valor1 = visor.getText().toString();
@@ -177,9 +183,9 @@ public class MainActivity extends AppCompatActivity  {
     public void borrarAC (View v){
         visor.setText("");
         visorResultado.setText("");
-        operan1 = 0.0;
-        operan2 = 0.0;
-        total = 0.0;
+        operan1 = 0;
+        operan2 = 0;
+        total = 0;
     }
 
     public void borrarDEL (View v){
@@ -189,8 +195,8 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     public void memoria (View v){
-        visor.setText(""+memory);
-
+        decimal(memory);
+        visor.setText(""+stringDecimal);
     }
 
     public void igual (View v){
@@ -203,62 +209,49 @@ public class MainActivity extends AppCompatActivity  {
 
         if (tipOperation == 1){
             total = operacion.operationSum(operan1, operan2);
-            stringResult = Double.toString(total);
+            decimal(total);
 
         }else if (tipOperation == 2){
             total = operacion.operationRes(operan1, operan2);
-            stringResult = Double.toString(total);
+            decimal(total);
 
         }else if (tipOperation == 3){
             total = operacion.operationMult(operan1, operan2);
-            stringResult = Double.toString(total);
+            decimal(total);
 
         }else if (tipOperation == 4) {
-            if (operan2 != 0){              //condicion si el denormidador es distinto de cero
-                total = operacion.operationDiv(operan1, operan2);
-                stringResult = Double.toString(total);
+            if (operan2 == 0){              //condicion si el denomidador es igual de cero
+                stringMensaje  = "Math ERROR";
+                visorResultado.setText(stringMensaje);
             }else {
-                stringResult = "Math ERROR";
+                total = operacion.operationDiv(operan1, operan2);
+                decimal(total);
             }
 
         }else if (tipOperation == 5){
             total = operacion.operationRaiz(operan1);
-            stringResult = Double.toString(total);
+            decimal(total);
 
         }else if (tipOperation == 6){
             total = operacion.operationExp(operan1, operan2);
-            stringResult = Double.toString(total);
-
+            decimal(total);
         }
-
-        visorResultado.setText(stringResult);
         memory=total; //si queremos hacer otra operacion con el resultado
     }
 
-
-
-    /*Elimina ceros que puede dar el double a partir de la coma */
-
-    public void deleteCeros() {
-        for(int i = stringResult.length()-1 ; i > stringResult.indexOf(".") ; i--){
-            String n = String.valueOf(stringResult.charAt(i));
-            if(n.equals("0")){
-                stringResult = stringResult.substring(0, i);
-                i--;
-            }
-        }
-        if(stringResult.length() > 1 &&
-                stringResult.substring(stringResult.length()-1, stringResult.length()).equals(".")){
-            stringResult = stringResult.replace(".", "");
-        }
+    //convertir double a número decimal
+    public void decimal(double total){
+        NumberFormat nf = new DecimalFormat("##.#########");
+        stringDecimal = (""+ nf.format(total));
+        visorResultado.setText(stringDecimal);
     }
-
 
     //Intent para enviar el dato a la otra actividad
-
     public void onSendResultado (View v){
         Intent intent = new Intent (this, Main2Activity.class);
-        intent.putExtra("Dato", String.valueOf(stringResult));
+        intent.putExtra("Dato", String.valueOf(stringDecimal));
         startActivity(intent);
     }
+
+
 }
