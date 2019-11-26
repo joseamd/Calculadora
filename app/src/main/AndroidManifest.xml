@@ -10,13 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".Main2Activity">
-        <!--android:configChanges="orientation|screenSize"--> ></activity> //Evitar reinicio de Activity2 al girar el móvil
+        <activity android:name=".Main2Activity"></activity>
         <activity android:name=".MainActivity">
-    <!--android:configChanges="orientation|screenSize"-->> //Evitar reinicio de Activity al girar el móvil
-
-
-        <intent-filter>
+               <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />

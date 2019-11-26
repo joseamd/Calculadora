@@ -25,7 +25,7 @@ public class Main2Activity extends AppCompatActivity {
 
         String mensaje = getIntent().getStringExtra("Dato");
         TextView textView = (TextView) findViewById(R.id.visorResultado);
-        textView.setText(mensaje);
+        textView.setText("Resultado: "+mensaje);
 
     }
 

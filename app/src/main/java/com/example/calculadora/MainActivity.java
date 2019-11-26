@@ -19,6 +19,19 @@ public class MainActivity extends AppCompatActivity  {
     public TextView visorResultado;
 
     @Override
+    //Metodo que almacena el dato cuando se reinicia la actividad
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        if(savedInstanceState != null ) {
+            operan1 = savedInstanceState.getDouble("", operan1);
+            total = savedInstanceState.getDouble("", total);
+            visor.setText("" + operan1);
+            visorResultado.setText(""+ total);
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
