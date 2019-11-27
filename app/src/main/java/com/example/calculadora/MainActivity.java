@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity  {
         outState.putString("",stringDecimal);
     }
 
-
     /*Creación de metodos de los botones*/
     public void button0 (View v){
         String contenido1 = visor.getText().toString();
