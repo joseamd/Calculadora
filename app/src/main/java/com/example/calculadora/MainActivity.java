@@ -31,11 +31,11 @@ public class MainActivity extends AppCompatActivity  {
         visorResultado = findViewById(R.id.visorResultado);
         operacion = new Operacion(); //creamos un objeto operacion
 
-        //Al girar pantalla permanece la info del EdiText, TexView
+        //Al girar pantalla permanece la info del EdiText, TexView y memoria
         if(savedInstanceState != null ) {
             operan1 = savedInstanceState.getDouble("", operan1);
             stringDecimal = savedInstanceState.getString("", stringDecimal);
-            memory = savedInstanceState.getDouble("", memory);
+            memory = Double.parseDouble(stringDecimal);
             visor.setText("" + operan1);
             visorResultado.setText(stringDecimal);
         }
@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity  {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putDouble("", operan1);
-        outState.putDouble("", memory);
         outState.putString("",stringDecimal);
     }
 
