@@ -164,8 +164,9 @@ public class MainActivity extends AppCompatActivity  {
             try {
                 String valor1 = visor.getText().toString();
                 operan1 = Double.parseDouble(valor1);
+                decimal(operan1);
             }catch (NumberFormatException nfe){}
-            visor.setText("√"+operan1);
+            visor.setText("√"+stringDecimal);
             tipOperation= 5;
         }
 
@@ -210,14 +211,17 @@ public class MainActivity extends AppCompatActivity  {
         if (tipOperation == 1){
             total = operacion.operationSum(operan1, operan2);
             decimal(total);
+            visorResultado.setText(stringDecimal);
 
         }else if (tipOperation == 2){
             total = operacion.operationRes(operan1, operan2);
             decimal(total);
+            visorResultado.setText(stringDecimal);
 
         }else if (tipOperation == 3){
             total = operacion.operationMult(operan1, operan2);
             decimal(total);
+            visorResultado.setText(stringDecimal);
 
         }else if (tipOperation == 4) {
             if (operan2 == 0){              //condicion si el denomidador es igual de cero
@@ -226,15 +230,18 @@ public class MainActivity extends AppCompatActivity  {
             }else {
                 total = operacion.operationDiv(operan1, operan2);
                 decimal(total);
+                visorResultado.setText(stringDecimal);
             }
 
         }else if (tipOperation == 5){
             total = operacion.operationRaiz(operan1);
             decimal(total);
+            visorResultado.setText(stringDecimal);
 
         }else if (tipOperation == 6){
             total = operacion.operationExp(operan1, operan2);
             decimal(total);
+            visorResultado.setText(stringDecimal);
         }
         memory=total; //si queremos hacer otra operacion con el resultado
     }
@@ -243,7 +250,7 @@ public class MainActivity extends AppCompatActivity  {
     public void decimal(double total){
         NumberFormat nf = new DecimalFormat("##.#########");
         stringDecimal = (""+ nf.format(total));
-        visorResultado.setText(stringDecimal);
+
     }
 
     //Intent para enviar el dato a la otra actividad
