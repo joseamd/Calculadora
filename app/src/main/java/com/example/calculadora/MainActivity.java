@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity  {
 
     public Operacion operacion;
     public double operan1, operan2, total, memory;
-    public int tipOperation;
+    public int tipOperation=0;
     public String stringMensaje = "", stringDecimal="";
     public EditText visor;
     public TextView visorResultado;
@@ -49,66 +49,77 @@ public class MainActivity extends AppCompatActivity  {
     /*Creación de metodos de los botones*/
 
     public void button0 (View v){
+        visorResultado.setText(""); // para limpiar pantalla de un resultado anterior
         String contenido1 = visor.getText().toString();
         contenido1= contenido1 + "0";
         visor.setText(contenido1);
     }
 
     public void button1 (View v){
+        visorResultado.setText("");
         String contenido1 = visor.getText().toString();
         contenido1= contenido1 + "1";
         visor.setText(contenido1);
     }
 
     public void button2 (View v){
+        visorResultado.setText("");
         String contenido1 = visor.getText().toString();
         contenido1= contenido1 + "2";
         visor.setText(contenido1);
     }
 
     public void button3 (View v){
+        visorResultado.setText("");
         String contenido1 = visor.getText().toString();
         contenido1= contenido1 + "3";
         visor.setText(contenido1);
     }
 
     public void button4 (View v){
+        visorResultado.setText("");
         String contenido1 = visor.getText().toString();
         contenido1= contenido1 + "4";
         visor.setText(contenido1);
     }
 
     public void button5 (View v){
+        visorResultado.setText("");
         String contenido1 = visor.getText().toString();
         contenido1= contenido1 + "5";
         visor.setText(contenido1);
     }
 
     public void button6 (View v){
+        visorResultado.setText("");
         String contenido1 = visor.getText().toString();
         contenido1= contenido1 + "6";
         visor.setText(contenido1);
     }
 
     public void button7 (View v){
+        visorResultado.setText("");
         String contenido1 = visor.getText().toString();
         contenido1= contenido1 + "7";
         visor.setText(contenido1);
     }
 
     public void button8 (View v){
+        visorResultado.setText("");
         String contenido1 = visor.getText().toString();
         contenido1= contenido1 + "8";
         visor.setText(contenido1);
     }
 
     public void button9 (View v){
+        visorResultado.setText("");
         String contenido1 = visor.getText().toString();
         contenido1= contenido1 + "9";
         visor.setText(contenido1);
     }
 
     public void buttonPunto (View v){
+        visorResultado.setText("");
         String contenido1 = visor.getText().toString();
         contenido1= contenido1 + ".";
         visor.setText(contenido1);
@@ -184,6 +195,7 @@ public class MainActivity extends AppCompatActivity  {
     public void borrarAC (View v){
         visor.setText("");
         visorResultado.setText("");
+        stringDecimal= ("");
         operan1 = 0;
         operan2 = 0;
         total = 0;
@@ -198,62 +210,75 @@ public class MainActivity extends AppCompatActivity  {
     public void memoria (View v){
         decimal(memory);
         visor.setText(""+stringDecimal);
+        visorResultado.setText("");
     }
 
     public void igual (View v){
+        if (tipOperation != 0){
+            try {
+                String valor2 = visor.getText().toString();
+                operan2 = Double.parseDouble(valor2);
+            }catch (NumberFormatException nfe){}
+            visor.setText("");
 
-        try {
-            String valor2 = visor.getText().toString();
-            operan2 = Double.parseDouble(valor2);
-        }catch (NumberFormatException nfe){}
-        visor.setText("");
-
-        if (tipOperation == 1){
-            total = operacion.operationSum(operan1, operan2);
-            decimal(total);
-            visorResultado.setText(stringDecimal);
-
-        }else if (tipOperation == 2){
-            total = operacion.operationRes(operan1, operan2);
-            decimal(total);
-            visorResultado.setText(stringDecimal);
-
-        }else if (tipOperation == 3){
-            total = operacion.operationMult(operan1, operan2);
-            decimal(total);
-            visorResultado.setText(stringDecimal);
-
-        }else if (tipOperation == 4) {
-            if (operan2 == 0){              //condicion si el denomidador es igual de cero
-                stringMensaje  = "Math ERROR";
-                visorResultado.setText(stringMensaje);
-            }else {
-                total = operacion.operationDiv(operan1, operan2);
+            if (tipOperation == 1){
+                total = operacion.operationSum(operan1, operan2);
                 decimal(total);
                 visorResultado.setText(stringDecimal);
+
+            }else if (tipOperation == 2){
+                total = operacion.operationRes(operan1, operan2);
+                decimal(total);
+                visorResultado.setText(stringDecimal);
+
+            }else if (tipOperation == 3){
+                total = operacion.operationMult(operan1, operan2);
+                decimal(total);
+                visorResultado.setText(stringDecimal);
+
+            }else if (tipOperation == 4) {
+                if (operan2 == 0){              //condicion si el denomidador es igual de cero
+                    stringMensaje  = "Math ERROR";
+                    visorResultado.setText(stringMensaje);
+                }else {
+                    total = operacion.operationDiv(operan1, operan2);
+                    decimal(total);
+                    visorResultado.setText(stringDecimal);
+                }
+
+            }else if (tipOperation == 5){
+                total = operacion.operationRaiz(operan1);
+                decimal(total);
+                visorResultado.setText(stringDecimal);
+
+            }else if (tipOperation == 6){
+                total = operacion.operationExp(operan1, operan2);
+                decimal(total);
+                visorResultado.setText(stringDecimal);
+
             }
-
-        }else if (tipOperation == 5){
-            total = operacion.operationRaiz(operan1);
+        }else {
+            try {
+                String valor1 = visor.getText().toString();
+                operan1 = Double.parseDouble(valor1);
+            }catch (NumberFormatException nfe){}
+            visor.setText("");
+            total = operan1;
             decimal(total);
-            visorResultado.setText(stringDecimal);
-
-        }else if (tipOperation == 6){
-            total = operacion.operationExp(operan1, operan2);
-            decimal(total);
-            visorResultado.setText(stringDecimal);
+            visorResultado.setText(""+stringDecimal);
         }
-        memory=total; //si queremos hacer otra operacion con el resultado
+        tipOperation=0; //inicializamos esta variable para una nueva operacion
+        memory=total; //guardamos el total en la variable memoria para hacer otra operacion
     }
 
     //convertir double a número decimal
     public void decimal(double total){
-        NumberFormat nf = new DecimalFormat("##.#########");
+        NumberFormat nf = new DecimalFormat("##.###########");
         stringDecimal = (""+ nf.format(total));
 
     }
 
-    //Intent para enviar el dato a la otra actividad
+    //Intent para enviar el dato a la actividad2
     public void onSendResultado (View v){
         Intent intent = new Intent (this, Main2Activity.class);
         intent.putExtra("Dato", String.valueOf(stringDecimal));
