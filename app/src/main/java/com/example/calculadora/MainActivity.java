@@ -31,31 +31,32 @@ public class MainActivity extends AppCompatActivity  {
         visorResultado = findViewById(R.id.visorResultado);
         operacion = new Operacion(); //creamos un objeto operacion
 
-        //Al girar pantalla permanece la info en el operan1
+        //Al girar pantalla permanece la info del EdiText y TexView
         if(savedInstanceState != null ) {
             operan1 = savedInstanceState.getDouble("", operan1);
+            stringDecimal = savedInstanceState.getString("", stringDecimal);
             visor.setText("" + operan1);
+            visorResultado.setText(stringDecimal);
         }
     }
 
     @Override
-    //Metodo que almacena el dato cuando se reinicia la actividad
+    //Almacenamos los datos cuando se reinicia la actividad
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putDouble("operan1", operan1);
-        outState.putDouble("total", memory);
+        outState.putDouble("", operan1);
+        outState.putString("",stringDecimal);
     }
+
 
     /*Creación de metodos de los botones*/
     public void button0 (View v){
-        visorResultado.setText("");
         String contenido1 = visor.getText().toString();
         contenido1= contenido1 + "0";
         visor.setText(contenido1);
     }
 
     public void button1 (View v){
-        visorResultado.setText("");
         String contenido1 = visor.getText().toString();
         contenido1= contenido1 + "1";
         visor.setText(contenido1);
@@ -68,56 +69,48 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     public void button3 (View v){
-        visorResultado.setText("");
         String contenido1 = visor.getText().toString();
         contenido1= contenido1 + "3";
         visor.setText(contenido1);
     }
 
     public void button4 (View v){
-        visorResultado.setText("");
         String contenido1 = visor.getText().toString();
         contenido1= contenido1 + "4";
         visor.setText(contenido1);
     }
 
     public void button5 (View v){
-        visorResultado.setText("");
         String contenido1 = visor.getText().toString();
         contenido1= contenido1 + "5";
         visor.setText(contenido1);
     }
 
     public void button6 (View v){
-        visorResultado.setText("");
         String contenido1 = visor.getText().toString();
         contenido1= contenido1 + "6";
         visor.setText(contenido1);
     }
 
     public void button7 (View v){
-        visorResultado.setText("");
         String contenido1 = visor.getText().toString();
         contenido1= contenido1 + "7";
         visor.setText(contenido1);
     }
 
     public void button8 (View v){
-        visorResultado.setText("");
         String contenido1 = visor.getText().toString();
         contenido1= contenido1 + "8";
         visor.setText(contenido1);
     }
 
     public void button9 (View v){
-        visorResultado.setText("");
         String contenido1 = visor.getText().toString();
         contenido1= contenido1 + "9";
         visor.setText(contenido1);
     }
 
     public void buttonPunto (View v){
-        visorResultado.setText("");
         String contenido1 = visor.getText().toString();
         contenido1= contenido1 + ".";
         visor.setText(contenido1);
