@@ -47,9 +47,8 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     /*Creación de metodos de los botones*/
-
     public void button0 (View v){
-        visorResultado.setText(""); // para limpiar pantalla de un resultado anterior
+        visorResultado.setText("");
         String contenido1 = visor.getText().toString();
         contenido1= contenido1 + "0";
         visor.setText(contenido1);
@@ -63,7 +62,6 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     public void button2 (View v){
-        visorResultado.setText("");
         String contenido1 = visor.getText().toString();
         contenido1= contenido1 + "2";
         visor.setText(contenido1);
@@ -128,12 +126,18 @@ public class MainActivity extends AppCompatActivity  {
     /*metodos de botones operadores*/
 
     public void suma (View v){
-        try {
-            String valor1 = visor.getText().toString();
-            operan1 = Double.parseDouble(valor1);
-        }catch (NumberFormatException nfe){}
-        visor.setText("");
-        tipOperation= 1;
+
+        if (visor.getText().toString().isEmpty()){
+            visor.setText("+");
+        }else{
+            try {
+                String valor1 = visor.getText().toString();
+                operan1 = Double.parseDouble(valor1);
+            }catch (NumberFormatException nfe){}
+            visor.setText("");
+            tipOperation= 1;
+        }
+
     }
 
     public void resta (View v){
@@ -150,21 +154,32 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     public void multiplicacion (View v){
-        try {
+        if(visor.getText().toString().isEmpty()){
+            stringMensaje = "Syntax ERROR";
+            visorResultado.setText(stringMensaje);
+        }else{
+            try {
             String valor1 = visor.getText().toString();
             operan1 = Double.parseDouble(valor1);
         }catch (NumberFormatException nfe){}
-        visor.setText("");
-        tipOperation = 3;
+            visor.setText("");
+            tipOperation = 3;}
+
     }
 
     public void division (View v){
-        try {
-            String valor1 = visor.getText().toString();
-            operan1 = Double.parseDouble(valor1);
-        }catch (NumberFormatException nfe){}
-        visor.setText("");
-        tipOperation= 4;
+        if(visor.getText().toString().isEmpty()){
+            stringMensaje = "Syntax ERROR";
+            visorResultado.setText(stringMensaje);
+        }else {
+            try {
+                String valor1 = visor.getText().toString();
+                operan1 = Double.parseDouble(valor1);
+            }catch (NumberFormatException nfe){}
+            visor.setText("");
+            tipOperation= 4;
+        }
+
     }
 
     public void raiz (View v){
@@ -184,12 +199,17 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     public void Exponente (View v){
-        try {
-            String valor1 = visor.getText().toString();
-            operan1 = Double.parseDouble(valor1);
-        }catch (NumberFormatException nfe){}
-        visor.setText("");
-        tipOperation= 6;
+        if(visor.getText().toString().isEmpty()) {
+            stringMensaje = "Syntax ERROR";
+            visorResultado.setText(stringMensaje);
+        }else {
+            try {
+                String valor1 = visor.getText().toString();
+                operan1 = Double.parseDouble(valor1);
+            }catch (NumberFormatException nfe){}
+            visor.setText("");
+            tipOperation= 6;
+        }
     }
 
     public void borrarAC (View v){
@@ -269,6 +289,7 @@ public class MainActivity extends AppCompatActivity  {
         }
         tipOperation=0; //inicializamos esta variable para una nueva operacion
         memory=total; //guardamos el total en la variable memoria para hacer otra operacion
+        total=0;
     }
 
     //convertir double a número decimal
