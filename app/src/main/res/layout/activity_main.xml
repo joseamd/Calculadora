@@ -22,16 +22,16 @@
 
     <TextView
         android:id="@+id/visorResultado"
-        android:layout_centerHorizontal="true"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_below="@id/visor"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="6dp"
         android:background="#e6e6e6"
         android:gravity="right"
+        android:text="@string/boton0"
         android:textColor="@color/colorAccent"
-        android:textSize="30dp"
-        android:layout_below="@id/visor"
-        android:layout_marginTop="6dp"
-        />
+        android:textSize="30dp" />
 
     <Button
         android:id="@+id/btSiguiente"

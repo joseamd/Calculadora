@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity  {
     public Operacion operacion;
     public double operan1, operan2, total, memory;
     public int tipOperation=0;
-    public String stringMensaje = "", stringDecimal="";
+    public String stringMensaje = "", stringDecimal="0";
     public EditText visor;
     public TextView visorResultado;
 
@@ -31,10 +31,11 @@ public class MainActivity extends AppCompatActivity  {
         visorResultado = findViewById(R.id.visorResultado);
         operacion = new Operacion(); //creamos un objeto operacion
 
-        //Al girar pantalla permanece la info del EdiText y TexView
+        //Al girar pantalla permanece la info del EdiText, TexView
         if(savedInstanceState != null ) {
             operan1 = savedInstanceState.getDouble("", operan1);
             stringDecimal = savedInstanceState.getString("", stringDecimal);
+            memory = savedInstanceState.getDouble("", memory);
             visor.setText("" + operan1);
             visorResultado.setText(stringDecimal);
         }
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity  {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putDouble("", operan1);
+        outState.putDouble("", memory);
         outState.putString("",stringDecimal);
     }
 
@@ -207,7 +209,7 @@ public class MainActivity extends AppCompatActivity  {
 
     public void borrarAC (View v){
         visor.setText("");
-        visorResultado.setText("");
+        visorResultado.setText("0");
         stringDecimal= ("");
         operan1 = 0;
         operan2 = 0;
@@ -223,7 +225,6 @@ public class MainActivity extends AppCompatActivity  {
     public void memoria (View v){
         decimal(memory);
         visor.setText(""+stringDecimal);
-        visorResultado.setText("");
     }
 
     public void igual (View v){
